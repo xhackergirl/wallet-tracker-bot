@@ -229,6 +229,6 @@ if __name__ == '__main__':
     if not API_HASH:
         raise ValueError("TELEGRAM_API_HASH is not set.")
 
-BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+    BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
     bot.loop.create_task(monitor_balances())
     bot.run_until_disconnected()
