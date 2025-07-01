@@ -14,7 +14,7 @@ import os
 
 
 
-bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
+
 
 # Temporary storage for chain selection
 user_chains = {}
@@ -230,5 +230,6 @@ if __name__ == '__main__':
         raise ValueError("TELEGRAM_API_HASH is not set.")
 
     BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+    bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
     bot.loop.create_task(monitor_balances())
     bot.run_until_disconnected()
