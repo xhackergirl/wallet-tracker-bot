@@ -12,7 +12,7 @@ load_dotenv()
 
 import os
 
-api_id = os.getenv('TELEGRAM_API_ID')
+api_id = 25235449
 if not api_id:
     raise ValueError("TELEGRAM_API_ID is not set in Railway environment variables.")
 API_ID = int(api_id)
