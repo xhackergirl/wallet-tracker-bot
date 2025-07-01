@@ -10,8 +10,17 @@ logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 
-API_ID = int(os.getenv('TELEGRAM_API_ID'))
+import os
+
+api_id = os.getenv('TELEGRAM_API_ID')
+if not api_id:
+    raise ValueError("TELEGRAM_API_ID is not set in Railway environment variables.")
+API_ID = int(api_id)
+
 API_HASH = os.getenv('TELEGRAM_API_HASH')
+if not API_HASH:
+    raise ValueError("TELEGRAM_API_HASH is not set.")
+
 BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
