@@ -10,26 +10,11 @@ logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 
-import os
+API_ID = int(os.getenv('TELEGRAM_API_ID'))
+API_HASH = os.getenv('TELEGRAM_API_HASH')
+BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
-
-if __name__ == '__main__':
-    print("Bot is running...")
-    api_id = 25235449
-    if not api_id:
-        raise ValueError("TELEGRAM_API_ID is not set in Railway environment variables.")
-    API_ID = int(api_id)
-    
-    API_HASH = os.getenv('TELEGRAM_API_HASH')
-    if not API_HASH:
-        raise ValueError("TELEGRAM_API_HASH is not set.")
-
-    BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-    bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
-    bot.loop.create_task(monitor_balances())
-    bot.run_until_disconnected()
-
-
+bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
 # Temporary storage for chain selection
 user_chains = {}
@@ -233,3 +218,7 @@ async def monitor_balances():
                 await update_last_balance(user_id, chain, addr, cur)
         await asyncio.sleep(30)  # check every 5 minutes
 
+if __name__ == '__main__':
+    print("Bot is running...")
+    bot.loop.create_task(monitor_balances())
+    bot.run_until_disconnected()
