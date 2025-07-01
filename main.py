@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 
-API_ID = int(os.getenv('TELEGRAM_API_ID'))
+API_ID = os.getenv('TELEGRAM_API_ID')
 API_HASH = os.getenv('TELEGRAM_API_HASH')
 BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
